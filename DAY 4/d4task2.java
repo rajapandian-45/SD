@@ -1,71 +1,78 @@
 public class d4task2 {
-
-    private Node head;
-    private int size = 0;
-
-    public void insertAtEnd(int data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-
-            head = newNode;
-        } else {
-            Node cur = head;
-
-            while (cur.next != null) cur = cur.next;
-            cur.next = newNode;
-            newNode.prev = cur;
-        }
-        size++;
-    }
-    class Node {
-        int data;
-        Node prev, next;
-        Node(int data) { this.data = data; }
-    }
-
-    public void insertMiddle(int data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
-        } else {
-            int mid = (size % 2 == 0 ? size / 2 : (size + 1) / 2);
-            Node cur = head;
-            for (int i = 1; i < mid; i++) {
-                cur = cur.next;
-            }         
-            newNode.next = cur.next;
-            newNode.prev = cur;
-            
-            if (cur.next != null) cur.next.prev = newNode;
-            cur.next = newNode;
-        }
-        size++;
-    }
-
-    public void traverseForward() {
-        Node cur = head;
-        System.out.print("Forward: ");
-        while (cur != null) {
-            System.out.print(cur.data + " ");
-            cur = cur.next;
-        }
-        System.out.println();
-    }
-    
-    public static void main(String[] args) {
-
-        d4task2 dll = new d4task2();
-        dll.insertAtEnd(10);
-        dll.insertAtEnd(20);
-        dll.insertAtEnd(30);
-        dll.insertAtEnd(40);
-        System.out.println("Before insertion:");
-        dll.traverseForward(); 
-        dll.insertMiddle(25);
-
-        System.out.println("After insertion in middle:");
-        dll.traverseForward();  
-
-    }
-}
-
+		Node head;
+		class Node
+		{
+		 int data;
+		 Node next;
+		 Node prev;
+		 Node(int val)
+		 {
+			 data=val;
+			 next=null;
+			 prev=null;
+		 }
+		}
+		 public  d4task2() {
+			head =null;
+	   }
+		public void insertAtBegin(int val)
+		{
+			Node newNode =new  Node(val);
+			if(head==null)
+			{
+				head=newNode;
+			}
+			else
+			{
+				newNode.next=head;
+				head.prev=newNode;
+				head=newNode;
+			}
+		}
+		public void insertInMiddle(int val) {
+	        Node newNode = new Node(val);
+	        if (head == null) {
+	            head = newNode;
+	            return;
+	        }
+	        Node slow = head;
+	        Node fast = head;
+	        while (fast != null && fast.next != null) {
+	            slow = slow.next;
+	            fast = fast.next.next;
+	        }
+	        Node prevNode = slow.prev;
+	        newNode.next = slow;
+	        newNode.prev = prevNode;
+	        slow.prev = newNode;
+	        if (prevNode != null) {
+	            prevNode.next = newNode;
+	        } else {
+	            head = newNode;
+	        }
+	    }
+		public void display()
+		{
+			Node temp=head;
+			while(temp!=null)
+			{
+				System.out.print(temp.data+" ");
+				temp=temp.next;
+			}	
+		}
+		 public static void main(String args[]) {
+			 d4task2 l=new  d4task2();
+			 l.insertAtBegin(60);
+			 l.insertAtBegin(50);
+			 l.insertAtBegin(40);
+			 l.insertAtBegin(30);
+			 l.insertAtBegin(20);
+			 l.insertAtBegin(10);
+			 l.insertAtBegin(777);
+			 l.display();
+			 System.out.println();
+			 System.out.println("After inserting 555 in the middle:");
+			 l.insertInMiddle(555);
+			 l.display();
+		 }
+	}
