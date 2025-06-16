@@ -1,4 +1,4 @@
-public class MainPro4 {
+public class d4mainprogram {
 		Node head;
 		class Node
 		{
@@ -12,7 +12,7 @@ public class MainPro4 {
 			 prev=null;
 		 }
 		}
-		 public  MainPro4() {
+		 public d4mainprogram() {
 			head =null;
 	   }
 		public void insertAtBegin(int val)
@@ -51,7 +51,7 @@ public class MainPro4 {
 		    }
 		}
 		 public static void main(String args[]) {
-			 MainPro4 l=new  MainPro4();
+			 d4mainprogram l=new  d4mainprogram();
 			 l.insertAtBegin(60);
 			 l.insertAtBegin(50);
 			 l.insertAtBegin(40);
